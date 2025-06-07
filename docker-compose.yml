@@ -4,7 +4,7 @@ services:
         command: --default-authentication-plugin=mysql_native_password
         volumes:
             - database_data:/var/lib/mysql
-            - ./database/my.cnf:/etc/mysql/my.cnf
+            - ./config/database.cnf:/etc/mysql/my.cnf
         ports:
             - "3306:3306"
         environment:
