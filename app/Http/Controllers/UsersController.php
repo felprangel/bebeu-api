@@ -41,7 +41,13 @@ class UsersController
         $user = User::find(Auth::id());
         $token = $user->createToken('cookie');
 
-        return ['token' => $token->plainTextToken];
+        return [
+            'token' => $token->plainTextToken,
+            'user_data' => [
+                'name' => $user->name,
+                'water_goal' => $user->water_goal
+            ]
+        ];
     }
 
     public function logout()
