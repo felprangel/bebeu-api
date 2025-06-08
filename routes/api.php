@@ -9,4 +9,5 @@ Route::post('/login', [UsersController::class, 'login']);
 
 Route::middleware(Authenticate::class . ':sanctum')->group(function () {
     Route::post('/logout', [UsersController::class, 'logout']);
+    Route::patch('/me/goal', [UsersController::class, 'changeWaterGoal']);
 });

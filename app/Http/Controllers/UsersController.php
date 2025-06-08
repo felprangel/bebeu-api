@@ -54,4 +54,15 @@ class UsersController
     {
         Auth::user()->currentAccessToken()->delete();
     }
+
+    public function changeWaterGoal()
+    {
+        $data = Request::validate([
+            'water_goal' => ['required', 'integer'],
+        ]);
+
+        $user = User::find(Auth::id());
+        $user->water_goal = $data['water_goal'];
+        $user->save();
+    }
 }
