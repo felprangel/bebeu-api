@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('water_intake', function (Blueprint $table) {
             $table->unsignedInteger('id')->autoIncrement();
             $table->unsignedInteger('quantity');
+            $table->unsignedInteger('user_id');
             $table->timestamp('created_at')->useCurrent();
         });
     }
