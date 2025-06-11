@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Validation\Rule;
@@ -70,5 +71,18 @@ class UsersController
     {
         $user = User::find(Auth::id());
         return $user->water_goal;
+    }
+
+    public function getWaterIntake()
+    {
+        $intake = DB::select(
+            "SELECT SUM(water_intake.quantity) AS sum
+            FROM water_intake
+            WHERE DATE(water_intake.created_at) = CURDATE()
+                AND water_intake.user_id = :user_id",
+            ['user_id' => Auth::id()]
+        );
+
+        return $intake[0]->sum;
     }
 }
