@@ -65,4 +65,10 @@ class UsersController
         $user->water_goal = $data['water_goal'];
         $user->save();
     }
+
+    public function getWaterGoal()
+    {
+        $user = User::find(Auth::id());
+        return $user->water_goal;
+    }
 }
