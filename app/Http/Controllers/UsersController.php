@@ -83,6 +83,11 @@ class UsersController
             ['user_id' => Auth::id()]
         );
 
-        return $intake[0]->sum;
+        $user = User::find(Auth::id());
+        $user->water_goal;
+
+        $percentage = ($intake[0]->sum / $user->water_goal) * 100;
+
+        return $percentage;
     }
 }
